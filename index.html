@@ -1,19 +1,5 @@
 
-                        <!DOCTYPE html>
-                        <html lang="en">
-                        <head>
-                            <meta charset="UTF-8">
-                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-              <style>
-                body {
-                  background-color: white; /* Ensure the iframe has a white background */
-                }
-    
-                
-              </style>
-                        </head>
-                        <body>
-                            <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8" />
@@ -315,6 +301,7 @@
       position: absolute;
       top: 0;
       left: -100%;
+;
       width: 100%;
       height: 100%;
       background: linear-gradient(
@@ -364,6 +351,91 @@
       box-shadow: none;
     }
 
+    /* Support section */
+    .support-section {
+      margin: 3rem 0;
+      padding: 2rem;
+      max-width: 600px;
+      width: 100%;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-left: 3px solid rgba(0, 255, 255, 0.6);
+      border-right: 3px solid rgba(0, 255, 255, 0.6);
+      background: rgba(0, 20, 20, 0.2);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease 0.8s;
+    }
+
+    .support-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .support-title {
+      color: #0f0;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .support-text {
+      color: rgba(0, 255, 255, 0.8);
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+      font-size: 0.95rem;
+    }
+
+    .support-cta {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.1);
+      color: #0f0;
+      padding: 0.8rem 1.5rem;
+      text-decoration: none;
+      border: 1px solid rgba(0, 255, 255, 0.5);
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .support-cta:hover {
+      background: rgba(0, 255, 255, 0.2);
+      transform: translateY(-2px);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.3);
+    }
+
+    /* About section */
+    .about-section {
+      margin: 2rem 0 4rem;
+      padding: 2rem;
+      max-width: 700px;
+      width: 100%;
+      border: 1px solid rgba(0, 255, 255, 0.2);
+      border-left: 3px solid rgba(0, 255, 255, 0.6);
+      border-right: 3px solid rgba(0, 255, 255, 0.6);
+      background: rgba(0, 20, 20, 0.2);
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease 1s;
+    }
+
+    .about-section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .about-title {
+      color: #0f0;
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.1em;
+    }
+
+    .about-text {
+      color: rgba(0, 255, 255, 0.8);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
     /* Footer */
     footer {
       margin-top: auto;
@@ -376,12 +448,20 @@
       z-index: 1;
       opacity: 0;
       transform: translateY(20px);
-      transition: all 0.8s ease 0.6s;
+      transition: all 0.8s ease 1.2s;
     }
 
     footer.visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    /* License */
+    .license {
+      margin-top: 1rem;
+      font-size: 0.8rem;
+      color: rgba(0, 255, 255, 0.5);
+      font-style: italic;
     }
 
     /* Responsive adjustments */
@@ -411,6 +491,11 @@
       .btn {
         padding: 1rem 1.2rem;
         font-size: 0.95rem;
+      }
+      
+      .support-section,
+      .about-section {
+        padding: 1.5rem;
       }
     }
 
@@ -664,11 +749,54 @@
         </span>
         Telegram (Coming Soon)
       </a>
+
+      <a href="#" class="btn btn-disabled" data-label="Instagram (Coming Soon)">
+        <span class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.514 0-10-4.486-10-10s4.486-10 10-10 10 4.486 10 10-4.486 10-10 10zm6-11.5c0 3.59-2.91 6.5-6.5 6.5s-6.5-2.91-6.5-6.5 2.91-6.5 6.5-6.5 6.5 2.91 6.5 6.5zm-11-1c-.552 0-1 .448-1 1s.448 1 1 1 1-.448 1-1-.448-1-1-1zm5.5 8c3.038 0 5.5-2.462 5.5-5.5s-2.462-5.5-5.5-5.5-5.5 2.462-5.5 5.5 2.462 5.5 5.5 5.5zm0-9c2.481 0 4.5 2.019 4.5 4.5s-2.019 4.5-4.5 4.5-4.5-2.019-4.5-4.5 2.019-4.5 4.5-4.5z"/>
+          </svg>
+        </span>
+        Instagram (Coming Soon)
+      </a>
+
+      <a href="#" class="btn btn-disabled" data-label="TikTok (Coming Soon)">
+        <span class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12.54 2c1.105 0 2.18.16 3.21.45 1.03.29 1.99.72 2.86 1.3a6.98 6.98 0 0 1 2.15 2.15c.58.87.99 1.83 1.3 2.86.3.97.45 2.04.45 3.21 0 1.105-.16 2.18-.45 3.21-.29 1.03-.72 1.99-1.3 2.86a6.98 6.98 0 0 1-2.15 2.15c-.87.58-1.83.99-2.86 1.3-1.03.3-2.04.45-3.21.45-1.105 0-2.18-.16-3.21-.45-1.03-.29-1.99-.72-2.86-1.3a6.98 6.98 0 0 1-2.15-2.15c-.58-.87-.99-1.83-1.3-2.86-.3-1.03-.45-2.04-.45-3.21 0-1.105.16-2.18.45-3.21.29-1.03.72-1.99 1.3-2.86a6.98 6.98 0 0 1 2.15-2.15c.87-.58 1.83-.99 2.86-1.3 1.03-.3 2.04-.45 3.21-.45zm-.06 2c-1.06 0-2.07.2-3 .58a4.98 4.98 0 0 0-2.42 2.42c-.38.93-.58 1.94-.58 3 0 1.06.2 2.07.58 3 .38.93.93 1.72 1.62 2.32.69.6 1.5 1.03 2.38 1.28.88.25 1.82.37 2.8.37 1.06 0 2.07-.2 3-.58a4.98 4.98 0 0 0 2.42-2.42c.38-.93.58-1.94.58-3 0-1.06-.2-2.07-.58-3a4.98 4.98 0 0 0-2.42-2.42c-.93-.38-1.94-.58-3-.58zm2.5 2v5.88c.92.21 1.7.78 2.16 1.56.46.78.6 1.67.4 2.5-.2.83-.78 1.54-1.56 1.99-.78.46-1.67.6-2.5.4-.83-.2-1.54-.78-1.99-1.56-.46-.78-.6-1.67-.4-2.5v-5.88h2.5z"/>
+          </svg>
+        </span>
+        TikTok (Coming Soon)
+      </a>
+    </div>
+
+    <!-- Support section -->
+    <div class="support-section" id="support">
+      <div class="support-title">SUPPORTA IL PROGETTO</div>
+      <p class="support-text">
+        Rooted Lab è un progetto indipendente sostenuto dalla comunità. 
+        Acquistando i nostri tool su Ko-fi contribuisci direttamente allo sviluppo 
+        di nuovi strumenti, tutorial e risorse open-source per la community.
+      </p>
+      <a href="https://ko-fi.com/rootedlab" class="support-cta">ACQUISTA I NOSTRI TOOL</a>
+    </div>
+
+    <!-- About section -->
+    <div class="about-section" id="about">
+      <div class="about-title">ABOUT ROOTED LAB</div>
+      <p class="about-text">
+        Rooted Lab è un laboratorio indipendente di sviluppo specializzato in 
+        strumenti di ethical hacking, sicurezza informatica e apprendimento pratico. 
+        Il nostro obiettivo è fornire risorse accessibili, trasparenti e didattiche 
+        per chiunque voglia approfondire il mondo della cybersecurity. 
+        Operiamo con principi etici, promuovendo l'uso responsabile delle conoscenze 
+        e lo sviluppo di competenze che possano migliorare la sicurezza digitale globale.
+      </p>
     </div>
   </main>
 
   <footer>
-    © 2025 Rooted Lab – Ethical Hacking Tools & Learning
+    <div>© 2025 Rooted Lab – Ethical Hacking Tools & Learning</div>
+    <div class="license">Licenza Non Commerciale • Contenuti a scopo educativo</div>
   </footer>
 
   <script>
@@ -680,6 +808,8 @@
     const title = document.querySelector('.title');
     const subtitle = document.querySelector('.subtitle');
     const buttons = document.querySelector('.buttons');
+    const supportSection = document.getElementById('support');
+    const aboutSection = document.getElementById('about');
     const footer = document.querySelector('footer');
     const body = document.body;
 
@@ -703,12 +833,14 @@
         const opacity = Math.random() * 0.5 + 0.1;
         const delay = Math.random() * 10;
         const duration = Math.random() * 20 + 10;
+        const startX = Math.random() * window.innerWidth;
+        const startY = Math.random() * window.innerHeight;
         
         particle.style.width = `${size}px`;
         particle.style.height = `${size}px`;
         particle.style.opacity = opacity;
-        particle.style.left = `${Math.random() * 100}%`;
-        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.left = `${startX}px`;
+        particle.style.top = `${startY}px`;
         particle.style.animationDuration = `${duration}s`;
         particle.style.animationDelay = `${delay}s`;
         
@@ -727,14 +859,23 @@
         const left = (i * 60) + (Math.random() * 20);
         const duration = Math.random() * 8 + 6;
         const delay = Math.random() * 10;
+        const height = Math.random() * 200 + 100;
+        const gap = Math.random() * 100 + 50;
         
         stream.style.left = `${left}px`;
+        stream.style.width = `${Math.random() * 10 + 15}px`;
         stream.style.animationDuration = `${duration}s`;
         stream.style.animationDelay = `${delay}s`;
+        stream.style.background = `repeating-linear-gradient(
+          to bottom,
+          transparent,
+          rgba(0, 255, 0, ${Math.random() * 0.5 + 0.3}) ${height}px,
+          transparent ${height + gap}px
+        )`;
         
         // Randomly show streams
         setTimeout(() => {
-          stream.style.opacity = Math.random() > 0.7 ? '0.3' : '0.1';
+          stream.style.opacity = (Math.random() > 0.7 ? '0.4' : '0.15');
         }, delay * 1000);
         
         dataStream.appendChild(stream);
@@ -796,10 +937,20 @@
         buttons.classList.add('visible');
       }, 2200);
 
+      // Support section
+      setTimeout(() => {
+        supportSection.classList.add('visible');
+      }, 2800);
+
+      // About section
+      setTimeout(() => {
+        aboutSection.classList.add('visible');
+      }, 3200);
+
       // Footer
       setTimeout(() => {
         footer.classList.add('visible');
-      }, 2800);
+      }, 3600);
     }
 
     // Handle window resize
@@ -828,9 +979,11 @@
       // Add resize listener
       window.addEventListener('resize', handleResize);
 
-      // Prevent default on disabled button
-      document.querySelector('.btn-disabled').addEventListener('click', (e) => {
-        e.preventDefault();
+      // Prevent default on disabled buttons
+      document.querySelectorAll('.btn-disabled').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+        });
       });
 
       // Periodic glitch effect
@@ -842,6 +995,17 @@
           }, 100);
         }
       }, 8000);
+
+      // Subtle animation for support CTA
+      setInterval(() => {
+        const cta = document.querySelector('.support-cta');
+        if (cta) {
+          cta.style.transform = 'translateY(-1px)';
+          setTimeout(() => {
+            cta.style.transform = 'translateY(0)';
+          }, 200);
+        }
+      }, 6000);
     }
 
     // Start when DOM is loaded
@@ -853,12 +1017,3 @@
   </script>
 </body>
 </html>
-
-
-    
-              <script>
-                              
-              </script>
-                        </body>
-                        </html>
-                    
