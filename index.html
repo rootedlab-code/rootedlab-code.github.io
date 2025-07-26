@@ -1,39 +1,864 @@
-<!DOCTYPE html>
+
+                        <!DOCTYPE html>
+                        <html lang="en">
+                        <head>
+                            <meta charset="UTF-8">
+                            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                body {
+                  background-color: white; /* Ensure the iframe has a white background */
+                }
+    
+                
+              </style>
+                        </head>
+                        <body>
+                            <!DOCTYPE html>
 <html lang="it">
 <head>
-  <meta charset="UTF-8">
-  <title>Rooted Lab</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Rooted Lab – No trace. Just skill.</title>
+  <meta name="description" content="Rooted Lab – Ethical Hacking Tools & Learning" />
   <style>
+    /* Reset base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
     body {
-      background-color: #0d0d0d;
-      color: #00ff88;
-      font-family: monospace;
+      font-family: 'Courier New', monospace;
+      background-color: #000;
+      color: #0f0;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      position: relative;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    body.loaded {
+      opacity: 1;
+    }
+
+    /* Futuristic cyberpunk background */
+    .cyber-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: -3;
+    }
+
+    /* Grid pattern */
+    .grid {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background-image: 
+        linear-gradient(rgba(0, 255, 0, 0.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(0, 255, 0, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+      transform: rotateX(60deg) scale(6);
+      transform-origin: center center;
+      opacity: 0.2;
+      animation: float 10s infinite ease-in-out;
+    }
+
+    /* Floating particles */
+    .particles {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      z-index: -2;
+    }
+
+    .particle {
+      position: absolute;
+      background: rgba(0, 255, 255, 0.3);
+      border-radius: 50%;
+      pointer-events: none;
+      animation: drift linear infinite;
+    }
+
+    /* Data streams */
+    .data-stream {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      z-index: -2;
+      opacity: 0.15;
+    }
+
+    .stream-column {
+      position: absolute;
+      width: 20px;
+      height: 100%;
+      background: linear-gradient(
+        to bottom,
+        transparent,
+        rgba(0, 255, 0, 0.8),
+        transparent
+      );
+      animation: stream linear infinite;
+      opacity: 0;
+    }
+
+    /* Holographic panels */
+    .hologram {
+      position: absolute;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      background: rgba(0, 20, 20, 0.2);
+      backdrop-filter: blur(1px);
+      box-shadow: 0 0 10px rgba(0, 255, 255, 0.1);
+      opacity: 0;
+      transform: translateY(50px);
+      z-index: -1;
+    }
+
+    .hologram-1 {
+      top: 10%;
+      left: 10%;
+      width: 80px;
+      height: 120px;
+      animation: hologram-fade 8s infinite 1s;
+    }
+
+    .hologram-2 {
+      top: 20%;
+      right: 15%;
+      width: 60px;
+      height: 100px;
+      animation: hologram-fade 12s infinite 3s;
+    }
+
+    .hologram-3 {
+      bottom: 20%;
+      left: 20%;
+      width: 100px;
+      height: 80px;
+      animation: hologram-fade 10s infinite 5s;
+    }
+
+    /* Scanning light */
+    .scan-line {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 0, 0.8),
+        transparent
+      );
+      z-index: -1;
+      animation: scan 4s linear infinite;
+      pointer-events: none;
+    }
+
+    /* Glitch overlay */
+    .glitch-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      opacity: 0;
+      background-image: repeating-linear-gradient(
+        0deg,
+        rgba(255, 0, 255, 0.03),
+        rgba(255, 0, 255, 0.03) 1px,
+        transparent 1px,
+        transparent 2px
+      );
+      animation: glitch-flash 7s infinite 2s;
+    }
+
+    /* Main container */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 2rem;
       text-align: center;
-      padding-top: 50px;
+      position: relative;
+      z-index: 1;
+      max-width: 100vw;
     }
-    a {
-      color: #00ff88;
-      display: block;
-      margin: 15px 0;
-      font-size: 18px;
+
+    /* Animated title */
+    .title-container {
+      margin-bottom: 3rem;
+      position: relative;
+      max-width: 90vw;
+    }
+
+    .title {
+      font-size: clamp(2.5rem, 8vw, 5rem);
+      font-weight: 700;
+      letter-spacing: 0.15em;
+      color: #0f0;
+      text-shadow: 
+        0 0 5px #0f0,
+        0 0 10px rgba(0, 255, 0, 0.8),
+        0 0 20px rgba(0, 255, 0, 0.6);
+      position: relative;
+      overflow: hidden;
+      white-space: nowrap;
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+
+    .title.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .title::before {
+      content: attr(data-text);
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: transparent;
+      color: #0ff;
+      z-index: -1;
+      opacity: 0;
+      mix-blend-mode: difference;
+      animation: title-glitch 5s infinite 2s;
+    }
+
+    /* Subtitle */
+    .subtitle {
+      color: rgba(0, 255, 255, 0.8);
+      font-size: 1.1rem;
+      margin-top: 0.5rem;
+      letter-spacing: 0.1em;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease 0.2s;
+    }
+
+    .subtitle.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Buttons container */
+    .buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 1.4rem;
+      width: 100%;
+      max-width: 420px;
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease 0.4s;
+    }
+
+    .buttons.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+      background: rgba(0, 30, 30, 0.3);
+      color: #0f0;
+      border: 1px solid rgba(0, 255, 255, 0.3);
+      padding: 1.2rem 1.8rem;
+      font-family: 'Courier New', monospace;
+      font-size: 1.1rem;
       text-decoration: none;
+      border-radius: 0;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+      position: relative;
+      overflow: hidden;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      box-shadow: 0 0 1px rgba(0, 255, 255, 0.5);
+      border-left: 2px solid rgba(0, 255, 255, 0.5);
+      border-right: 2px solid rgba(0, 255, 255, 0.5);
     }
-    a:hover {
-      text-decoration: underline;
+
+    .btn:hover {
+      background: rgba(0, 40, 40, 0.5);
+      border-color: rgba(0, 255, 255, 0.8);
+      box-shadow: 0 0 15px rgba(0, 255, 255, 0.3);
+      transform: translateY(-3px) scale(1.02);
+      border-left: 2px solid rgba(0, 255, 255, 0.8);
+      border-right: 2px solid rgba(0, 255, 255, 0.8);
     }
-    .logo {
-      font-size: 30px;
-      margin-bottom: 20px;
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(0, 255, 255, 0.2),
+        transparent
+      );
+      transition: none;
+    }
+
+    .btn:hover::before {
+      animation: shine-sweep 0.8s ease-out forwards;
+    }
+
+    /* Icon glow */
+    .btn-icon {
+      width: 24px;
+      height: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+    }
+
+    .btn-icon svg {
+      fill: #0f0;
+      filter: drop-shadow(0 0 5px rgba(0, 255, 0, 0.5));
+      transition: all 0.3s ease;
+    }
+
+    .btn:hover .btn-icon svg {
+      fill: #0ff;
+      filter: drop-shadow(0 0 10px rgba(0, 255, 255, 0.8));
+      transform: scale(1.3);
+    }
+
+    /* Disabled state */
+    .btn-disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .btn-disabled:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    /* Footer */
+    footer {
+      margin-top: auto;
+      padding: 1.8rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: rgba(0, 255, 255, 0.6);
+      border-top: 1px solid rgba(0, 255, 255, 0.1);
+      width: 100%;
+      z-index: 1;
+      opacity: 0;
+      transform: translateY(20px);
+      transition: all 0.8s ease 0.6s;
+    }
+
+    footer.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Responsive adjustments */
+    @media (min-width: 768px) {
+      .buttons {
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      
+      .btn {
+        flex: 1 1 calc(50% - 1rem);
+        min-width: 190px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .title {
+        font-size: 2.8rem;
+        line-height: 1.2;
+      }
+      
+      .buttons {
+        gap: 1.2rem;
+      }
+      
+      .btn {
+        padding: 1rem 1.2rem;
+        font-size: 0.95rem;
+      }
+    }
+
+    /* Cursor effect */
+    .cursor {
+      position: fixed;
+      width: 12px;
+      height: 12px;
+      border: 1px solid rgba(0, 255, 255, 0.8);
+      border-radius: 50%;
+      background: rgba(0, 255, 255, 0.2);
+      pointer-events: none;
+      z-index: 9999;
+      transform: translate(-50%, -50%);
+      transition: transform 0.1s ease, width 0.2s ease, height 0.2s ease;
+      opacity: 0;
+    }
+
+    .cursor.visible {
+      opacity: 0.8;
+    }
+
+    .cursor.follower {
+      width: 40px;
+      height: 40px;
+      border: 1px solid rgba(0, 255, 255, 0.4);
+      background: rgba(0, 255, 255, 0.1);
+      opacity: 0;
+    }
+
+    .cursor.follower.visible {
+      opacity: 0.3;
+    }
+
+    /* Terminal typing effect */
+    .typing-effect {
+      border-right: 2px solid #0f0;
+      animation: typing 3.5s steps(40) 1 normal both,
+                 blink 0.7s step-end infinite;
+      white-space: nowrap;
+      overflow: hidden;
+      width: 0;
+    }
+
+    /* Animations */
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotateX(60deg) scale(6); }
+      50% { transform: translateY(-20px) rotateX(60deg) scale(6.1); }
+    }
+
+    @keyframes drift {
+      0% {
+        transform: translateY(0) translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.8;
+      }
+      90% {
+        opacity: 0.8;
+      }
+      100% {
+        transform: translateY(-100vh) translateX(100px) rotate(720deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes stream {
+      0% {
+        transform: translateY(-100vh) rotate(1deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.3;
+      }
+      90% {
+        opacity: 0.3;
+      }
+      100% {
+        transform: translateY(100vh) rotate(-1deg);
+        opacity: 0;
+      }
+    }
+
+    @keyframes hologram-fade {
+      0%, 100% {
+        opacity: 0;
+        transform: translateY(50px) rotateX(10deg);
+      }
+      10% {
+        opacity: 0.8;
+        transform: translateY(0) rotateX(0deg);
+      }
+      20% {
+        opacity: 0.8;
+        transform: translateY(0) rotateX(0deg);
+      }
+      30% {
+        opacity: 0;
+        transform: translateY(-50px) rotateX(-10deg);
+      }
+    }
+
+    @keyframes scan {
+      0% {
+        transform: translateY(-100vh);
+      }
+      100% {
+        transform: translateY(100vh);
+      }
+    }
+
+    @keyframes glitch-flash {
+      0%, 100% {
+        opacity: 0;
+      }
+      2% {
+        opacity: 0.4;
+      }
+      4% {
+        opacity: 0;
+      }
+      30% {
+        opacity: 0;
+      }
+      32% {
+        opacity: 0.3;
+      }
+      34% {
+        opacity: 0;
+      }
+    }
+
+    @keyframes shine-sweep {
+      0% { left: -100%; }
+      100% { left: 100%; }
+    }
+
+    @keyframes title-glitch {
+      0%, 100% {
+        transform: translate(0);
+        opacity: 0;
+      }
+      10% {
+        transform: translate(-2px, 1px);
+        opacity: 0.5;
+      }
+      20% {
+        transform: translate(1px, -1px);
+        opacity: 0.7;
+      }
+      30% {
+        transform: translate(-1px, 0);
+        opacity: 0.4;
+      }
+      40% {
+        transform: translate(2px, 2px);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translate(-2px, -1px);
+        opacity: 0.3;
+      }
+      60% {
+        transform: translate(1px, 1px);
+        opacity: 0.8;
+      }
+      70% {
+        transform: translate(-1px, -1px);
+        opacity: 0.5;
+      }
+      80% {
+        transform: translate(2px, 0);
+        opacity: 0.4;
+      }
+      90% {
+        transform: translate(-2px, 2px);
+        opacity: 0.6;
+      }
+    }
+
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+
+    @keyframes blink {
+      0%, 100% { border-color: #0f0; }
+      50% { border-color: transparent; }
     }
   </style>
 </head>
 <body>
-  <div class="logo">🔐 ROOTED LAB</div>
-  <div>No trace. Just skill.</div>
-  <br><br>
-  <a href="https://ko-fi.com/rootedlab" target="_blank">☕ Supportaci su Ko-fi</a>
-  <a href="https://t.me/rootedlab" target="_blank">📡 Telegram Channel</a>
-  <a href="https://github.com/rootedlab-code/rootedlab_main" target="_blank">💾 GitHub Toolkit</a>
-  <a href="https://youtube.com/@rootedlab" target="_blank">🎥 YouTube Channel</a>
+  <!-- Custom cursors -->
+  <div class="cursor" id="cursor"></div>
+  <div class="cursor follower" id="cursor-follower"></div>
+
+  <!-- Futuristic background elements -->
+  <div class="cyber-bg">
+    <div class="grid"></div>
+    <div class="particles" id="particles"></div>
+    <div class="data-stream" id="data-stream"></div>
+    <div class="hologram hologram-1"></div>
+    <div class="hologram hologram-2"></div>
+    <div class="hologram hologram-3"></div>
+    <div class="scan-line"></div>
+    <div class="glitch-overlay"></div>
+  </div>
+
+  <main>
+    <div class="title-container">
+      <h1 class="title" data-text="ROOTED LAB">
+        <span class="typing-effect">ROOTED LAB</span>
+      </h1>
+      <div class="subtitle">NO TRACE. JUST SKILL.</div>
+    </div>
+
+    <div class="buttons">
+      <a href="https://github.com/rootedlab-code/rootedlab_main" class="btn" data-label="GitHub Toolkit">
+        <span class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/>
+          </svg>
+        </span>
+        GitHub Toolkit
+      </a>
+
+      <a href="https://youtube.com/@rootedlab" class="btn" data-label="YouTube">
+        <span class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+          </svg>
+        </span>
+        YouTube
+      </a>
+
+      <a href="https://ko-fi.com/rootedlab" class="btn" data-label="Ko-fi">
+        <span class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm0 22c-5.514 0-10-4.486-10-10s4.486-10 10-10 10 4.486 10 10-4.486 10-10 10zm-1-15h2v8h-2v-8zm4-2h2v10h-2v-10z"/>
+          </svg>
+        </span>
+        Ko-fi
+      </a>
+
+      <a href="#" class="btn btn-disabled" data-label="Telegram (Coming Soon)">
+        <span class="btn-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm.301 19.972c-.15.067-.317.06-.466-.019l-3.548-1.947c-.167-.092-.248-.26-.212-.434.684-3.288 1.952-6.437 3.72-9.245.143-.225.411-.348.676-.304.265.044.464.238.512.501.5 2.769.674 5.589.518 8.378-.029.501-.464.876-.974.876-.045 0-.091-.002-.136-.007-.048-.004-.096-.012-.144-.023l-1.081-.245 1.582 5.792c.05.183-.01.378-.15.505-.108.096-.25.14-.39.14-.07 0-.14-.015-.207-.046z"/>
+          </svg>
+        </span>
+        Telegram (Coming Soon)
+      </a>
+    </div>
+  </main>
+
+  <footer>
+    © 2025 Rooted Lab – Ethical Hacking Tools & Learning
+  </footer>
+
+  <script>
+    // DOM elements
+    const cursor = document.getElementById('cursor');
+    const cursorFollower = document.getElementById('cursor-follower');
+    const particlesContainer = document.getElementById('particles');
+    const dataStream = document.getElementById('data-stream');
+    const title = document.querySelector('.title');
+    const subtitle = document.querySelector('.subtitle');
+    const buttons = document.querySelector('.buttons');
+    const footer = document.querySelector('footer');
+    const body = document.body;
+
+    // Show body after load
+    window.addEventListener('load', () => {
+      setTimeout(() => {
+        body.classList.add('loaded');
+      }, 100);
+    });
+
+    // Create particles
+    function createParticles() {
+      const particleCount = Math.min(window.innerWidth / 10, 50);
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Random properties
+        const size = Math.random() * 4 + 1;
+        const opacity = Math.random() * 0.5 + 0.1;
+        const delay = Math.random() * 10;
+        const duration = Math.random() * 20 + 10;
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.opacity = opacity;
+        particle.style.left = `${Math.random() * 100}%`;
+        particle.style.top = `${Math.random() * 100}%`;
+        particle.style.animationDuration = `${duration}s`;
+        particle.style.animationDelay = `${delay}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+    }
+
+    // Create data streams
+    function createDataStreams() {
+      const streamCount = Math.floor(window.innerWidth / 60);
+      
+      for (let i = 0; i < streamCount; i++) {
+        const stream = document.createElement('div');
+        stream.classList.add('stream-column');
+        
+        const left = (i * 60) + (Math.random() * 20);
+        const duration = Math.random() * 8 + 6;
+        const delay = Math.random() * 10;
+        
+        stream.style.left = `${left}px`;
+        stream.style.animationDuration = `${duration}s`;
+        stream.style.animationDelay = `${delay}s`;
+        
+        // Randomly show streams
+        setTimeout(() => {
+          stream.style.opacity = Math.random() > 0.7 ? '0.3' : '0.1';
+        }, delay * 1000);
+        
+        dataStream.appendChild(stream);
+      }
+    }
+
+    // Custom cursor
+    function setupCursor() {
+      // Show cursor after a short delay
+      setTimeout(() => {
+        cursor.classList.add('visible');
+        cursorFollower.classList.add('visible');
+      }, 500);
+
+      document.addEventListener('mousemove', (e) => {
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
+        
+        // Delayed follower
+        requestAnimationFrame(() => {
+          cursorFollower.style.left = e.clientX + 'px';
+          cursorFollower.style.top = e.clientY + 'px';
+        });
+      });
+
+      // Hover effects
+      const interactiveElements = document.querySelectorAll('a, button, .btn');
+      interactiveElements.forEach(element => {
+        element.addEventListener('mouseenter', () => {
+          cursor.style.transform = 'translate(-50%, -50%) scale(3)';
+          cursor.style.background = 'rgba(0, 255, 255, 0.4)';
+          cursor.style.borderColor = 'rgba(0, 255, 255, 0.8)';
+          cursorFollower.style.transform = 'translate(-50%, -50%) scale(2)';
+        });
+        
+        element.addEventListener('mouseleave', () => {
+          cursor.style.transform = 'translate(-50%, -50%) scale(1)';
+          cursor.style.background = 'rgba(0, 255, 255, 0.2)';
+          cursor.style.borderColor = 'rgba(0, 255, 255, 0.8)';
+          cursorFollower.style.transform = 'translate(-50%, -50%) scale(1)';
+        });
+      });
+    }
+
+    // Animate elements on scroll/visibility
+    function animateOnVisible() {
+      // Title appears first
+      setTimeout(() => {
+        title.classList.add('visible');
+      }, 1000);
+
+      // Subtitle
+      setTimeout(() => {
+        subtitle.classList.add('visible');
+      }, 1600);
+
+      // Buttons
+      setTimeout(() => {
+        buttons.classList.add('visible');
+      }, 2200);
+
+      // Footer
+      setTimeout(() => {
+        footer.classList.add('visible');
+      }, 2800);
+    }
+
+    // Handle window resize
+    function handleResize() {
+      // Clear existing streams and particles
+      while (dataStream.firstChild) {
+        dataStream.removeChild(dataStream.firstChild);
+      }
+      
+      while (particlesContainer.firstChild) {
+        particlesContainer.removeChild(particlesContainer.firstChild);
+      }
+      
+      // Recreate with new dimensions
+      createParticles();
+      createDataStreams();
+    }
+
+    // Initialize
+    function init() {
+      createParticles();
+      createDataStreams();
+      setupCursor();
+      animateOnVisible();
+
+      // Add resize listener
+      window.addEventListener('resize', handleResize);
+
+      // Prevent default on disabled button
+      document.querySelector('.btn-disabled').addEventListener('click', (e) => {
+        e.preventDefault();
+      });
+
+      // Periodic glitch effect
+      setInterval(() => {
+        if (Math.random() < 0.2) {
+          document.querySelector('.glitch-overlay').style.opacity = '0.4';
+          setTimeout(() => {
+            document.querySelector('.glitch-overlay').style.opacity = '0';
+          }, 100);
+        }
+      }, 8000);
+    }
+
+    // Start when DOM is loaded
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', init);
+    } else {
+      init();
+    }
+  </script>
 </body>
 </html>
+
+
+    
+              <script>
+                              
+              </script>
+                        </body>
+                        </html>
+                    
