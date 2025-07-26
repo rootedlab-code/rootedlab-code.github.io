@@ -13,6 +13,7 @@
       box-sizing: border-box;
     }
 
+    /* Rimuoviamo overflow hidden dal body */
     body {
       font-family: 'Courier New', monospace;
       background-color: #000;
@@ -20,7 +21,6 @@
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      overflow: hidden;
       position: relative;
       opacity: 0;
       transition: opacity 1s ease;
@@ -30,7 +30,7 @@
       opacity: 1;
     }
 
-    /* Futuristic cyberpunk background */
+    /* Background fixed, non influisce sullo scroll */
     .cyber-bg {
       position: fixed;
       top: 0;
@@ -38,6 +38,7 @@
       width: 100%;
       height: 100%;
       z-index: -3;
+      pointer-events: none;
     }
 
     /* Grid pattern */
@@ -171,19 +172,19 @@
       animation: glitch-flash 7s infinite 2s;
     }
 
-    /* Main container - FIXED: now allows scrolling */
+    /* Main container - ora scrollabile correttamente */
     main {
       flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
       align-items: center;
-      padding: 4rem 2rem 6rem;
+      padding: 4rem 2rem 3rem;
       text-align: center;
       position: relative;
       z-index: 1;
       max-width: 100vw;
-      overflow-y: auto;
+      margin: 0 auto;
     }
 
     /* Animated title */
@@ -480,7 +481,7 @@
 
     @media (max-width: 480px) {
       main {
-        padding: 3rem 1.5rem 5rem;
+        padding: 3rem 1.5rem 3rem;
       }
       
       .title {
@@ -713,8 +714,8 @@
     <div class="glitch-overlay"></div>
   </div>
 
-  <!-- Main content with proper scrolling -->
-  <main id="main-content">
+  <!-- Main content -->
+  <main>
     <div class="title-container">
       <h1 class="title" data-text="ROOTED LAB">
         <span class="typing-effect">ROOTED LAB</span>
@@ -821,7 +822,6 @@
     const aboutSection = document.getElementById('about');
     const footer = document.querySelector('footer');
     const body = document.body;
-    const mainContent = document.getElementById('main-content');
 
     // Show body after load
     window.addEventListener('load', () => {
